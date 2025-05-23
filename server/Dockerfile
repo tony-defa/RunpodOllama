@@ -38,7 +38,7 @@ RUN curl -sS https://bootstrap.pypa.io/get-pip.py | python3.11
 RUN pip install --upgrade pip
 
 # Add your file
-ADD . .
+ADD start.sh .
 
 RUN pip install runpod
 
