@@ -25,10 +25,13 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install --yes --quiet --no-install-re
     python3.10-gdbm \
     python3.10-tk \
     pip
+    
 RUN whereis python
 
 RUN update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.10 999 \
     && update-alternatives --config python3 && ln -s /usr/bin/python3 /usr/bin/python
+    
+RUN curl -sS https://bootstrap.pypa.io/get-pip.py | python3.10
 
 RUN pip install --upgrade pip
 
