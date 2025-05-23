@@ -18,16 +18,16 @@ RUN apt-get install --reinstall ca-certificates
 RUN add-apt-repository --yes ppa:deadsnakes/ppa && apt update --yes --quiet
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get install --yes --quiet --no-install-recommends \
-    python3.11 \
-    python3.11-dev \
-    python3.11-distutils \
-    python3.11-lib2to3 \
-    python3.11-gdbm \
-    python3.11-tk \
+    python3.10 \
+    python3.10-dev \
+    python3.10-distutils \
+    python3.10-lib2to3 \
+    python3.10-gdbm \
+    python3.10-tk \
     pip
 RUN whereis python
 
-RUN update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.11 999 \
+RUN update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.10 999 \
     && update-alternatives --config python3 && ln -s /usr/bin/python3 /usr/bin/python
 
 RUN pip install --upgrade pip
