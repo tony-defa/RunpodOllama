@@ -25,7 +25,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install --yes --quiet --no-install-re
     python3.11-gdbm \
     python3.11-tk \
     pip
-RUN sudo whereis python
+RUN whereis python
 
 RUN update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.10 999 \
     && update-alternatives --config python3 && ln -s /usr/bin/python3 /usr/bin/python
