@@ -11,6 +11,7 @@ RUN apt-get update --yes --quiet && DEBIAN_FRONTEND=noninteractive apt-get insta
     gpg-agent \
     build-essential apt-utils \ 
     curl \
+    git \
     && rm -rf /var/lib/apt/lists/*
 
 RUN apt-get install --reinstall ca-certificates
