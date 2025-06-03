@@ -27,11 +27,9 @@ check_server_is_running() {
 
 # Wait for the server to start
 while ! check_server_is_running; do
-    sleep 5
+    sleep 2
 done
 
-if [ -n "$1" ]; then
-    ollama pull $1
-fi
+installed_model=$(ollama ls | awk 'NR==2 {print $1}')
 
-python -u runpod_wrapper.py $1
+python -u runpod_wrapper.py $installed_model

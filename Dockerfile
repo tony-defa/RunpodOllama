@@ -1,5 +1,10 @@
+ARG PULL_IMAGE="qwen2.5vl:3b"
+
 # Use an official base image with your desired version
 FROM ollama/ollama:0.9.0
+
+# Define the model to pull (using the ARG passed during build)
+ARG PULL_IMAGE
 
 ENV PYTHONUNBUFFERED=1 
 
@@ -43,6 +48,17 @@ ADD runpod_wrapper.py .
 
 RUN pip install runpod
 
+# Pre-pull the Gemma model:
+# 1. Start ollama serve in the background (&)
+# 2. Wait a few seconds for the server to start (sleep 5)
+# 3. Run ollama pull
+# 4. (Optional but good practice) Kill the background server process
+#    We use 'ps | grep ollama | grep -v grep | awk '{print $1}' | xargs kill' to find and kill the server process
+#    Note: Error during kill is ignored (|| true) in case the server exited quickly.
+RUN ollama serve & \
+    sleep 5 && \
+    ollama pull ${PULL_IMAGE} && \
+    (ps | grep ollama | grep -v grep | awk '{print $1}' | xargs kill || true)
+
 # Override Ollama's entrypoint
 ENTRYPOINT ["bin/bash", "start.sh"]
-

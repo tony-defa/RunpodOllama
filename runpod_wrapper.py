@@ -26,10 +26,7 @@ def handler(job: HandlerJob):
     input["input"]["stream"] = False
     print(sys.argv)
     model = sys.argv[1]
-
-    # check if input["input"]["model"] is set, if not set then use the default model
-    if not input.get("input", {}).get("model"):
-        input["input"]["model"] = model
+    input["input"]["model"] = model
     
 
     response = requests.post(
