@@ -26,7 +26,11 @@ def handler(job: HandlerJob):
     input["input"]["stream"] = False
     print(sys.argv)
     model = sys.argv[1]
-    input["input"]["model"] = model
+
+    # check if input["input"]["model"] is set, if not set then use the default model
+    if not input.get("input", {}).get("model"):
+        input["input"]["model"] = model
+    
 
     response = requests.post(
         url=f"{base_url}/{input['method_name']}",

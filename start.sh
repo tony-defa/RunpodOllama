@@ -30,5 +30,8 @@ while ! check_server_is_running; do
     sleep 5
 done
 
-ollama pull $1
+if [ -n "$1" ]; then
+    ollama pull $1
+fi
+
 python -u runpod_wrapper.py $1

@@ -1,9 +1,5 @@
-ARG PULL_MODEL=qwen2.5vl:7b
-
 # Use an official base image with your desired version
 FROM ollama/ollama:0.9.0
-
-ARG PULL_MODEL
 
 ENV PYTHONUNBUFFERED=1 
 
@@ -49,6 +45,4 @@ RUN pip install runpod
 
 # Override Ollama's entrypoint
 ENTRYPOINT ["bin/bash", "start.sh"]
-
-CMD ["qwen2.5vl:7b"]
 
