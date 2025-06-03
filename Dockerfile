@@ -50,5 +50,5 @@ RUN pip install runpod
 # Override Ollama's entrypoint
 ENTRYPOINT ["bin/bash", "start.sh"]
 
-CMD ["${PULL_MODEL}"]
+CMD ["qwen2.5vl:7b"]
 
