@@ -1,5 +1,5 @@
 # Use an official base image with your desired version
-FROM ollama/ollama:0.7.1-rc2-rocm
+FROM ollama/ollama:0.9.0
 
 ENV PYTHONUNBUFFERED=1 
 
